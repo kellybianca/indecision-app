@@ -74,8 +74,6 @@ var newTemplate = React.createElement(
     getLocation(user.location)
 );
 
-var app = document.getElementById('app');
-// var newApp = document.getElementById('newapp');
+var appRoot = document.getElementById('app');
 
-// ReactDOM.render(template, app);
-ReactDOM.render(template, app);
+ReactDOM.render(template, appRoot);
