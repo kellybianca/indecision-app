@@ -1,79 +1,52 @@
 'use strict';
 
-//onde vão ficar os arquivos JSX
-console.log('App.js is running');
-
-// JSX - JavaScript XML
-var app = {
-    title: 'Indecision app ',
-    subtitle: 'it is a very funny',
-    options: ['One', 'Two']
+var indecision = {
+    title: 'meu projeto que não funciona'
 };
 
-var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        app.title
-    ),
-    app.subtitle && React.createElement(
-        'p',
-        null,
-        app.subtitle
-    ),
-    React.createElement(
-        'p',
-        null,
-        app.options.length > 0 ? 'here are your options' : 'No options',
-        ' '
-    ),
-    React.createElement(
-        'ol',
+var visibilityButton = false;
+
+var onButtonTitle = function onButtonTitle() {
+
+    visibilityButton = !visibilityButton;
+
+    if (visibilityButton) {
+        console.log(visibilityButton);
+    } else {
+        visibilityButton = false;
+        console.log(visibilityButton);
+    }
+    render();
+};
+
+var render = function render() {
+    var template = React.createElement(
+        'div',
         null,
         React.createElement(
-            'li',
+            'h1',
             null,
-            'one'
+            ' ',
+            indecision.title,
+            ' '
+        ),
+        React.createElement(
+            'button',
+            { onClick: onButtonTitle },
+            visibilityButton ? 'esconder' : 'mostrar'
+        ),
+        visibilityButton && React.createElement(
+            'div',
+            null,
+            React.createElement(
+                'p',
+                null,
+                'Hey, aqui voce encontra mais detalhes'
+            )
         )
-    )
-);
+    );
 
-var user = {
-    name: 'Kelly',
-    age: 20,
-    location: "rio largo"
+    ReactDOM.render(template, document.getElementById('app'));
 };
 
-function getLocation(location) {
-    if (location) {
-        return React.createElement(
-            'p',
-            null,
-            'Location: ',
-            location
-        );
-    }
-}
-
-var newTemplate = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        user.name ? user.name : "Anonymous"
-    ),
-    user.age && user.age >= 18 && React.createElement(
-        'p',
-        null,
-        'Age: ',
-        user.age
-    ),
-    getLocation(user.location)
-);
-
-var appRoot = document.getElementById('app');
-
-ReactDOM.render(template, appRoot);
+render();
